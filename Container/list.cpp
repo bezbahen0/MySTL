@@ -8,27 +8,28 @@ struct List
     using size_type = std::size_t;
     using reference = T&;
     
+    struct Node;
 
     struct iterator
     {
-        Node* current;
+        Node* m_current;
         
-        explicit iterator(Node current): this.current(current);
+        iterator(Node* current): m_current(current) { };
 
         reference operator*()
         {
-            current = current -> data;
+            m_current = m_current -> data;
         }
 
         iterator& operator++()
         {
-            current = current -> next;
+            m_current = m_current -> next;
             return *this;
         }
 
         iterator& operator--()
         {
-            current = current -> prev;
+            m_current = m_current -> prev;
             return *this;
         }
     };

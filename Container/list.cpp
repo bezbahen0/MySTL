@@ -11,8 +11,29 @@ struct List
 
     struct iterator
     {
-         
+        Node* current;
+        
+        explicit iterator(Node current): this.current(current);
+
+        reference operator*()
+        {
+            current = current -> data;
+        }
+
+        iterator& operator++()
+        {
+            current = current -> next;
+            return *this;
+        }
+
+        iterator& operator--()
+        {
+            current = current -> prev;
+            return *this;
+        }
     };
+    
+
 
     struct Node
     {
@@ -27,6 +48,10 @@ struct List
     size_type size;
     
     List() : head(nullptr), tail(nullptr), size(NULL){};
+    
+
+    iterator begin();
+    iterator end();
 
     void push_back(value_type data)
     {
